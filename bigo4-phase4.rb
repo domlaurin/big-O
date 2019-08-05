@@ -121,7 +121,6 @@ class StackQueue
     end
 
     def enqueue
-        @stack3 = MyStack.new
         @stack1.push(ele) # add ele to the end of []
         @stack2.push(ele) # add ele to the end of []
         @stack3.push(ele) # add ele to the end of []
@@ -130,14 +129,31 @@ class StackQueue
     end
     
     def dequeue
-        @size.times do
+        (@size - 1).times do
             @stack3.push(@stack2.pop)
         end
         @stack3
     end
 end
 
-@stack1 
+
+
+12345
+
+123 stack 1
+1234 stack 1
+432 stack 3 (stack 2 - 1) #we can pop all of these eles again to put them in order but then we'd prob need like 4 stacks lol 
+12345 stack 1
+
+we want a stack that also keeps track of the max/min element in it (keep track of current min, current max, push those as well, and then update if needed based on the new element; when its popped you can restore the old current_min and current_max by popping them back off)
+
+we can make a queue out of two of these stacks
+(have an input stack to enqueue and an output stack to dequeue; if you dequeue and the output stack is empty, pop the input stack until its empty pushing each of these elements into the output stack, effectively inverting their order)
+
+and then you can check the size of said queue to enforce the window size (queue.dequeue if queue.size > window_size), and keep track of the max range seen so far (queue.max - queue.min)
+
+
+
 
 discuss how to create a queue using push and pop from the MyStack so that it takes O(1) time to dequeue this queue.
 
