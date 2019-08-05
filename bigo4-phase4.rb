@@ -219,11 +219,13 @@ set @store to 789
 1234567 (3)
 goal 123
 
+goal 234
+enqueue(4)
+
 class StackQueue
     def initialize
-        @stack1 = MyStack.new #[]
-        @stack2 = MyStack.new #[]
-        @initial_queue = MyStack.new
+        @stack1 = MyStack.new 
+        @stack2 = MyStack.new 
         @size = nil
         @store = []
     end
@@ -233,21 +235,69 @@ class StackQueue
     end
 
     def enqueue(ele)
-        # if @stack1.empty? && @stack2.empty?
-        #     @initial_queue.push(ele)
-        #     if @initial_queue.size == @size
-                
-        # end
-
+        if @stack1.empty? && @stack2.empty?
+            @stack1.push(ele)
+        end
+        if @stack1.empty?
+            @stack2.push(ele)
+        end
+        if @stack2.empty?
+            @stack1.push(ele)
+        end
     end
     
-    def dequeue 
+    def dequeue
+        if @stack2.empty?
+            @size.times do 
+                @stack2.push(@stack1.pop)
+            end
+            @stack2.reverse!
+            @store = @stack2.dup
+
+            @stack1 = MyStack.new
+        end 
+        if @stack1.empty?
+            @size.times do 
+                @stack1.push(@stack2.pop)
+            end
+            @stack1.reverse!
+            @store = @stack1.dup
+
+            @stack2 = MyStack.new
+        end 
     end
 end
 
+stack1 = 1234
+stack2 = empty
+goal 234
+stack1 = 1
+stack2 = 432
 
-def empty?
+-----
+stack1 = empty
+stack2 = 234
+goal 345
+
+
+
+
+----------
+stack1 = 123
+stack2 = empty
+
+goal 234
+stack1.enqueue(4)
+stack1 # becomes 1234
+@size.times do #that's 3 times
+    stack2.push(stack1.pop)
 end
+stack1 #becomes 1
+stack2 #becomes 432
+stack2.reverse! #becomes 234
+set @store to stack2
+
+
 
 
 123 stack 1
