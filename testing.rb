@@ -1,6 +1,11 @@
 class MyStack
+
+    attr_reader :store
     def initialize
         @store = []
+    end
+    def reverse!
+        @store.reverse!
     end
     def peek
         @store.first
@@ -51,7 +56,7 @@ class StackQueue
             @stack2.reverse!
             @stack1 = MyStack.new
 
-            @store = @stack2.dup
+            @store = @stack2.store
         end 
         if @stack1.empty?
             @size.times do 
@@ -60,10 +65,12 @@ class StackQueue
             @stack1.reverse!
             @stack2 = MyStack.new
 
-            @store = @stack1.dup
+            @store = @stack1.store
         end 
     end
 end
+
+#Testing the code
 
 a = [1,2,3,4,5,6]
 
@@ -73,3 +80,21 @@ sq = StackQueue.new
 
 sq.size(3)
 
+a.each_with_index do |ele, i|
+    if i == window_size - 1
+        sq.enqueue(ele)
+        next
+    end
+    if i < window_size
+        sq.enqueue(ele)
+        next
+    end
+    sq.enqueue(ele)
+    print sq.dequeue
+end
+
+#this returns 
+#[2, 3, 4]
+#[3, 4, 5]
+#[4, 5, 6]
+# which is what we need.
