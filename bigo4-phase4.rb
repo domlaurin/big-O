@@ -43,26 +43,47 @@ phase 6
 
 class MinMaxStackQueue
     def initialize
-        @store = MinMaxStack.new
-        @store2 = MinMaxStack.new
+        @stack1 = MinMaxStack.new 
+        @stack2 = MinMaxStack.new  
+        @size = nil
+        @store = []
     end
 
-    def size 
-        @store.size
+    def size(window_size)
+        @size = window_size
     end
 
-    def empty?
-        @store.empty?
-    end
-
-    def enqueue(rabbit)
-        @store.push(rabbit)
-    end
-
-    def dequeue
-        if @store2.empty? 
-        @store2.push(@store.pop)
+    def enqueue(ele)
+        if @stack1.empty? && @stack2.empty?
+            @stack1.push(ele)
         end
+        if @stack1.empty?
+            @stack2.push(ele)
+        end
+        if @stack2.empty?
+            @stack1.push(ele)
+        end
+    end
+    
+    def dequeue
+        if @stack2.empty?
+            @size.times do 
+                @stack2.push(@stack1.pop)
+            end
+            @stack2.reverse!
+            @stack1 = MinMaxStack.new
+
+            @store = @stack2.store
+        end 
+        if @stack1.empty?
+            @size.times do 
+                @stack1.push(@stack2.pop)
+            end
+            @stack1.reverse!
+            @stack2 = MinMaxStack.new
+
+            @store = @stack1.store
+        end 
     end
 end
 
