@@ -42,6 +42,8 @@ end
 phase 6
 
 class MinMaxStackQueue
+
+    attr_reader :stack1, :stack2
     def initialize
         @stack1 = MinMaxStack.new 
         @stack2 = MinMaxStack.new  
@@ -100,6 +102,51 @@ def windowed_max_range(array, window_size)
     end
     current_max_range
 end
+
+#Testing the code
+
+a = [1,2,3,4,5,6]
+
+window_size = 3
+
+mmsq = MinMaxStackQueue.new
+
+mmsq.size(3)
+
+mmsq.stack1.max - mmsq.stack1.min
+
+def windowed_max_range(a, window_size)
+    max_range = 0
+    a.each_with_index do |ele, i|
+        if i == window_size - 1
+            mmsq.enqueue(ele)
+            next
+        end
+        if i < window_size
+            mmsq.enqueue(ele)
+            next
+        end
+        mmsq.enqueue(ele)
+        mmsq.dequeue
+        
+        if max_range < mmsq.stack1.max - mmsq.stack1.min
+            max_range = mmsq.stack1.max - mmsq.stack1.min
+        end
+    end
+    max_range
+end
+
+
+
+#this returns 
+#[2, 3, 4]
+#[3, 4, 5]
+#[4, 5, 6]
+# which is what we need.
+
+
+
+
 
 store min max
 don't' do array slicing
