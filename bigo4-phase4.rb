@@ -105,6 +105,40 @@ solution - stack.
 
 StackQueue
 
+class StackQueue
+    def initialize
+        @stack1 = MyStack.new #[]
+        @stack2 = MyStack.new #[]
+        @stack3 = MyStack.new #[]
+        @size = 0
+    end
+
+    def size
+        @size
+    end
+
+    def empty?
+    end
+
+    def enqueue
+        @stack3 = MyStack.new
+        @stack1.push(ele) # add ele to the end of []
+        @stack2.push(ele) # add ele to the end of []
+        @stack3.push(ele) # add ele to the end of []
+        @size +=1
+        @stack3
+    end
+    
+    def dequeue
+        @size.times do
+            @stack3.push(@stack2.pop)
+        end
+        @stack3
+    end
+end
+
+@stack1 
+
 discuss how to create a queue using push and pop from the MyStack so that it takes O(1) time to dequeue this queue.
 
 stack = [123] 
@@ -119,7 +153,11 @@ one stack should be for popping
 enqueue - stack.push
 [12345]
 dequeue - stack.pop times 3 => 543
-
+12345 (3)
+123
+1234
+234
+345
 
 
 array = [1, 2, 3, 4, 5, 6, 7] 4
