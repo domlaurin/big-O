@@ -111,6 +111,7 @@ class StackQueue
         @stack2 = MyStack.new #[]
         @stack3 = MyStack.new #[]
         @size = 0
+        @store = []
     end
 
     def size
@@ -135,10 +136,32 @@ class StackQueue
         @stack3
     end
 end
+objective in phase 4 is how on earth do dequeue with O(1) time
+set @store to the answers
 
+12345 (3) 
+stack1 = MyStack.new #pretty much the same as []
+stack1.push three times
+stack2.push three times
+123 #set @store to 123
 
+goal: 234
 
-12345
+stack1.push(4) #so stack1 becomes 1234
+#so stack2 is 1234 is because rn it's the same as stack1
+stack3.push(stack2.pop) stack3 becomes 123
+stack3.push(stack2.pop) stack3 becomes 12
+stack3.push(stack2.pop) stack3 becomes 1
+stack3 = 4,3,2
+stack3.reverse!
+set @store to 234 #which is stack3
+
+goal: 345
+
+stack1 is 1234
+stack1.push(5) # so stack1 becomes 12345
+stack4
+
 
 123 stack 1
 1234 stack 1
