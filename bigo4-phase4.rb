@@ -139,7 +139,7 @@ end
 objective in phase 4 is how on earth do dequeue with O(1) time
 set @store to the answers
 
-123456 (3) 
+123456789 (3) 
 stack1 = MyStack.new #pretty much the same as []
 stack1.push three times
 stack2.push three times
@@ -165,15 +165,89 @@ stack2 = MyStack.new
 stack2.push(stack3.pop)
 stack2.push(stack3.pop)
 stack2.push(stack3.pop)
+stack3 #this becomes 2
 stack2 #this becomes 543
-stack2.reverse #this becomes 345
+stack2.reverse! #this becomes 345
 set @store to 345
 
 goal: 456
 stack1 is 12345
 stack1.push(6) #stack1 becomes 123456
+stack2.push(6) #stack2 becomes 3456
+stack3 = MyStack.new
+stack3.push(stack2.pop)
+stack3.push(stack2.pop)
+stack3.push(stack2.pop)
+stack3 #now this is 654
+stack2 #now this is 3
+stack3.reverse! #this becomes 456
+set @store to 456
+
+goal: 567
+stack3.push(7) #this becomes 4567
+stack2 = MyStack.new
+stack2.push(stack3.pop)
+stack2.push(stack3.pop)
+stack2.push(stack3.pop)
+stack3 #this becomes 4
+stack2 #becomes 765
+stack2.reverse! #this becomes 567
+set @store to 567
+
+goal: 678
+stack2.push(8) #this becomes 5678
+stack3 = MyStack.new
+stack3.push(stack2.pop)
+stack3.push(stack2.pop)
+stack3.push(stack2.pop)
+stack2 #this becomes 5
+stack3 #this becomes 876
+stack3.reverse! #this becomes 678
+set @store to 678
+
+goal:789
+stack3.push(9) #becomes 6789
+stack2 = MyStack.new
+stack2.push(stack3.pop)
+stack2.push(stack3.pop)
+stack2.push(stack3.pop)
+stack3 #becomes 6
+stack2 #becomes 987
+stack2.reverse! #789
+set @store to 789
+
+1234567 (3)
+goal 123
+
+class StackQueue
+    def initialize
+        @stack1 = MyStack.new #[]
+        @stack2 = MyStack.new #[]
+        @initial_queue = MyStack.new
+        @size = nil
+        @store = []
+    end
+
+    def size(window_size)
+        @size = window_size
+    end
+
+    def enqueue(ele)
+        # if @stack1.empty? && @stack2.empty?
+        #     @initial_queue.push(ele)
+        #     if @initial_queue.size == @size
+                
+        # end
+
+    end
+    
+    def dequeue 
+    end
+end
 
 
+def empty?
+end
 
 
 123 stack 1
