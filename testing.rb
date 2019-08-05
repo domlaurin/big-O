@@ -1,5 +1,4 @@
 class MyStack
-
     attr_reader :store
     def initialize
         @store = []
@@ -31,6 +30,15 @@ class StackQueue
         @size = nil
         @store = []
     end
+
+    def enqueue(ele)
+        @stack1.push(ele)
+
+    def dequeue
+        if @stack2.empty?
+            until 
+
+
 
     def size(window_size)
         @size = window_size
@@ -98,4 +106,3 @@ end
 #[3, 4, 5]
 #[4, 5, 6]
 # which is what we need.
-
