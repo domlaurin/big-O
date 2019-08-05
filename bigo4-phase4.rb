@@ -139,7 +139,7 @@ end
 objective in phase 4 is how on earth do dequeue with O(1) time
 set @store to the answers
 
-12345 (3) 
+123456 (3) 
 stack1 = MyStack.new #pretty much the same as []
 stack1.push three times
 stack2.push three times
@@ -160,7 +160,20 @@ goal: 345
 
 stack1 is 1234
 stack1.push(5) # so stack1 becomes 12345
-stack4
+stack3.push(5) # so stack3 becomes 2345
+stack2 = MyStack.new
+stack2.push(stack3.pop)
+stack2.push(stack3.pop)
+stack2.push(stack3.pop)
+stack2 #this becomes 543
+stack2.reverse #this becomes 345
+set @store to 345
+
+goal: 456
+stack1 is 12345
+stack1.push(6) #stack1 becomes 123456
+
+
 
 
 123 stack 1
